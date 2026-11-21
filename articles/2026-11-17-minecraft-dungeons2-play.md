@@ -6,3 +6,5 @@
 
 - マップの**脇道**を探索する。
 - 次回は装備の組み合わせを変えてみる。
+
+ ![sample](../assets/images/sample.png)
