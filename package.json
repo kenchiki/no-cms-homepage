@@ -1,0 +1,26 @@
+{
+  "name": "workspace",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "node src/commands/build.ts",
+    "build:full": "node src/commands/build.ts --full",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kenchiki/no-cms-homepage.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/kenchiki/no-cms-homepage/issues"
+  },
+  "homepage": "https://github.com/kenchiki/no-cms-homepage#readme",
+  "dependencies": {
+    "marked": "18.2.1"
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "差分ビルド",
+      "type": "process",
+      "command": "docker",
+      "args": ["compose", "run", "--build", "--rm", "-T", "generator", "npm", "run", "build"],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "フルビルド",
+      "type": "process",
+      "command": "docker",
+      "args": ["compose", "run", "--build", "--rm", "-T", "generator", "npm", "run", "build:full"],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "group": "build",
+      "problemMatcher": []
+    }
+  ]
+}

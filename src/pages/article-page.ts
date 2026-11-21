@@ -1,0 +1,25 @@
+import type { ArticleMarkdown } from '../article-markdown.ts';
+import type { ArticleTemplate } from '../templates/article-template.ts';
+import { Page } from './page.ts';
+
+export class ArticlePage extends Page {
+  readonly outputPath: string;
+  #template: ArticleTemplate;
+  #articleMarkdown: ArticleMarkdown;
+
+  constructor({ template, articleMarkdown }: { template: ArticleTemplate; articleMarkdown: ArticleMarkdown }) {
+    super({ changeCheckList: [template, articleMarkdown] });
+    this.outputPath = articleMarkdown.outputPath;
+    this.#template = template;
+    this.#articleMarkdown = articleMarkdown;
+  }
+
+  render(): string {
+    const { title, publishedDate } = this.#articleMarkdown;
+    return this.#template.render({
+      articleTitle: title,
+      publishedDate,
+      articleBody: this.#articleMarkdown.render(),
+    });
+  }
+}
