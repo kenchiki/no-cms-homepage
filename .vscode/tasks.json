@@ -25,6 +25,26 @@
       },
       "group": "build",
       "problemMatcher": []
+    },
+    {
+      "label": "プレビューを起動",
+      "type": "process",
+      "command": "docker",
+      "args": ["compose", "up", "--wait", "preview"],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "プレビューを停止",
+      "type": "process",
+      "command": "docker",
+      "args": ["compose", "stop", "preview"],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": []
     }
   ]
 }

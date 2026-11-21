@@ -2,10 +2,11 @@
 
 サーバーサイドを使用せず、ローカル環境でブログを書いたり、固定ページを書いて、静的HTMLを生成できる。
 ライブラリの依存も少なく、10年後も壊れなさそうな構成で作成。
+[VS Codeのタスク定義](.vscode/tasks.json)を使って、下記を実行する。
 
 ## ビルド
 
-基本的に[VS Codeのタスク定義](.vscode/tasks.json)を使って、下記のビルドを行う。
+
 
 ### 差分ビルド
 
@@ -13,18 +14,22 @@
 削除した記事や固定ページのHTMLも削除。
 共通レイアウトを変更した場合は全ページを再生成。
 
-```sh
-docker compose run --build --rm -T generator npm run build
-```
-
 ### フルビルド
 
 強制的に全ページを再生成
 `src/`の生成処理を変更した時などに使用。
 
+## プレビューを起動
+
+http://localhost でサイトを確認できる。
+
+80番ポートが使用中の場合は、ポートを指定できる。
+
 ```sh
-docker compose run --build --rm -T generator npm run build:full
+PREVIEW_PORT=8080 docker compose up --wait preview
 ```
+
+終了するときは、VS Codeのタスク「プレビューを停止」
 
 ## コンテンツの追加
 
