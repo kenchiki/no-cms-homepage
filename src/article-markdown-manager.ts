@@ -1,15 +1,15 @@
 import { ArticleMarkdown } from './article-markdown.ts';
 import type { BuildHashesStore } from './build-hashes-store.ts';
-import type { DirectoryFilePaths } from './directory-file-paths.ts';
+import type { FilteredPaths } from './filtered-paths.ts';
 import { listPaths } from './infrastructure/files.ts';
 
 export class ArticleMarkdownManager {
   static readonly sourceDirectory = 'articles';
   static readonly sourceExtension = '.md';
   readonly #sourcePaths = listPaths(ArticleMarkdownManager.sourceDirectory, ArticleMarkdownManager.sourceExtension);
-  readonly #previousSourcePaths: DirectoryFilePaths;
+  readonly #previousSourcePaths: FilteredPaths;
 
-  constructor(previousSourcePaths: DirectoryFilePaths) {
+  constructor(previousSourcePaths: FilteredPaths) {
     this.#previousSourcePaths = previousSourcePaths;
   }
 
@@ -20,8 +20,8 @@ export class ArticleMarkdownManager {
     }));
   }
 
-  removedOutputPaths(): string[] {
-    return this.#previousSourcePaths.removedPaths(this.#sourcePaths)
+  removedPaths(): string[] {
+    return this.#previousSourcePaths.difference(this.#sourcePaths)
       .map(ArticleMarkdown.outputPath);
   }
 }

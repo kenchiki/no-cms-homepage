@@ -1,4 +1,5 @@
 import type { ChangeTracker } from '../change-tracker.ts';
+import { writeFile } from '../infrastructure/files.ts';
 
 export abstract class Page implements ChangeTracker {
   abstract readonly outputPath: string;
@@ -12,5 +13,9 @@ export abstract class Page implements ChangeTracker {
     return this.#changeCheckList.some((check) => check.hasChanges());
   }
 
-  abstract render(): string;
+  build(): void {
+    writeFile(this.outputPath, this.render());
+  }
+
+  protected abstract render(): string;
 }

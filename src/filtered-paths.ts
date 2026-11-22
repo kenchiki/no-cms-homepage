@@ -1,6 +1,6 @@
 import { dirname, extname } from 'node:path';
 
-export class DirectoryFilePaths {
+export class FilteredPaths {
   readonly #paths: readonly string[];
 
   constructor({ directory, extension, paths }: {
@@ -15,8 +15,8 @@ export class DirectoryFilePaths {
     return this.#paths;
   }
 
-  removedPaths(currentPaths: readonly string[]): string[] {
-    const currentPathSet = new Set(currentPaths);
-    return this.#paths.filter((path) => !currentPathSet.has(path));
+  difference(paths: readonly string[]): string[] {
+    const pathSet = new Set(paths);
+    return this.#paths.filter((path) => !pathSet.has(path));
   }
 }

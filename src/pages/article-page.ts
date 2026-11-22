@@ -14,7 +14,7 @@ export class ArticlePage extends Page {
     this.#articleMarkdown = articleMarkdown;
   }
 
-  render(): string {
+  protected render(): string {
     const { title, publishedDate } = this.#articleMarkdown;
     return this.#template.render({
       articleTitle: title,

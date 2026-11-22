@@ -27,3 +27,19 @@ export function writeFile(path: string, content: string): void {
     rmSync(temp, { force: true });
   }
 }
+
+export function deleteFiles(paths: readonly string[]): number {
+  let deleted = 0;
+  for (const path of paths) {
+    if (!fileExists(path)) continue;
+    rmSync(path);
+    deleted += 1;
+  }
+  return deleted;
+}
+
+export function fileExists(path: string): boolean {
+  const entry = lstatSync(path, { throwIfNoEntry: false });
+  if (entry && !entry.isFile()) throw new Error(`${path} は通常のファイルである必要があります。`);
+  return !!entry;
+}

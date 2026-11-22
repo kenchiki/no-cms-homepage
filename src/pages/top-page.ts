@@ -17,7 +17,7 @@ export class TopPage extends Page {
     this.#articleMarkdownList = articleMarkdownList;
   }
 
-  render(): string {
+  protected render(): string {
     return this.#template.render({ latestArticles: renderArticles(this.#articleMarkdownList.articles) });
   }
 }

@@ -33,7 +33,7 @@ export class FixedPage extends Page implements HashTracker {
     return this.#source.hash;
   }
 
-  render(): string {
+  protected render(): string {
     return this.#layoutTemplate.render(parseHtml(this.#source.text));
   }
 }

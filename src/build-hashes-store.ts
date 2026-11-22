@@ -1,4 +1,5 @@
 import { readFileSync } from 'node:fs';
+import type { HashTracker } from './hash-tracker.ts';
 import { writeFile } from './infrastructure/files.ts';
 
 type Hashes = Readonly<Record<string, string>>;
@@ -11,7 +12,8 @@ export class BuildHashesStore {
     this.#hashes = this.#readJson(BuildHashesStore.#statePath) ?? {};
   }
 
-  save(hashes: Hashes): void {
+  save(hashTrackers: readonly HashTracker[]): void {
+    const hashes = Object.fromEntries(hashTrackers.map(({ sourcePath, hash }) => [sourcePath, hash]));
     writeFile(BuildHashesStore.#statePath, this.#serialize(hashes));
     this.#hashes = hashes;
   }

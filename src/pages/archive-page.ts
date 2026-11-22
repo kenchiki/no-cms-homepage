@@ -17,7 +17,7 @@ export class ArchivePage extends Page {
     this.#articleMarkdownList = articleMarkdownList;
   }
 
-  render(): string {
+  protected render(): string {
     return this.#template.render(this.#renderSections());
   }
 

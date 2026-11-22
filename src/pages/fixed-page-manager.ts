@@ -1,5 +1,5 @@
 import type { BuildHashesStore } from '../build-hashes-store.ts';
-import type { DirectoryFilePaths } from '../directory-file-paths.ts';
+import type { FilteredPaths } from '../filtered-paths.ts';
 import { listPaths } from '../infrastructure/files.ts';
 import type { LayoutTemplate } from '../templates/layout-template.ts';
 import { FixedPage } from './fixed-page.ts';
@@ -8,9 +8,9 @@ export class FixedPageManager {
   static readonly sourceDirectory = 'pages';
   static readonly sourceExtension = '.html';
   readonly #sourcePaths = listPaths(FixedPageManager.sourceDirectory, FixedPageManager.sourceExtension);
-  readonly #previousSourcePaths: DirectoryFilePaths;
+  readonly #previousSourcePaths: FilteredPaths;
 
-  constructor(previousSourcePaths: DirectoryFilePaths) {
+  constructor(previousSourcePaths: FilteredPaths) {
     this.#previousSourcePaths = previousSourcePaths;
   }
 
@@ -22,8 +22,8 @@ export class FixedPageManager {
     }));
   }
 
-  removedOutputPaths(): string[] {
-    return this.#previousSourcePaths.removedPaths(this.#sourcePaths)
+  removedPaths(): string[] {
+    return this.#previousSourcePaths.difference(this.#sourcePaths)
       .map(FixedPage.outputPath);
   }
 }

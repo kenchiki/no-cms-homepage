@@ -16,7 +16,6 @@ try {
   build();
 } catch (error) {
   console.error('ビルドに失敗しました。', error instanceof Error ? error.message : error);
-  console.error('原因を解消したら、VS Code の「差分ビルド」を再実行してください。');
-  console.error('HTML の書き込み・削除が途中で止まった場合は、「フルビルド」を実行してください。');
+  console.error('原因を解消したら、同じビルドを再実行してください。');
   process.exitCode = 1;
 }
