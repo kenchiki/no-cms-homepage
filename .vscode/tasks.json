@@ -5,7 +5,7 @@
       "label": "差分ビルド",
       "type": "process",
       "command": "docker",
-      "args": ["compose", "run", "--build", "--rm", "-T", "generator", "npm", "run", "build"],
+      "args": ["compose", "run", "--build", "--rm", "-T", "app", "npm", "run", "build"],
       "options": {
         "cwd": "${workspaceFolder}"
       },
@@ -19,12 +19,23 @@
       "label": "フルビルド",
       "type": "process",
       "command": "docker",
-      "args": ["compose", "run", "--build", "--rm", "-T", "generator", "npm", "run", "build:full"],
+      "args": ["compose", "run", "--build", "--rm", "-T", "app", "npm", "run", "build:full"],
       "options": {
         "cwd": "${workspaceFolder}"
       },
       "group": "build",
       "problemMatcher": []
+    },
+    {
+      "label": "型チェック",
+      "type": "process",
+      "command": "docker",
+      "args": ["compose", "run", "--build", "--rm", "-T", "app", "npm", "run", "typecheck"],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "group": "build",
+      "problemMatcher": "$tsc"
     },
     {
       "label": "プレビューを起動",

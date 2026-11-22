@@ -1,5 +1,5 @@
 services:
-  generator:
+  app:
     build: .
     volumes:
       - .:/app/workspace
