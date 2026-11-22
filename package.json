@@ -6,6 +6,7 @@
   "scripts": {
     "build": "node src/commands/build.ts",
     "build:full": "node src/commands/build.ts --full",
+    "typecheck": "tsc --noEmit",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -22,5 +23,9 @@
   "homepage": "https://github.com/kenchiki/no-cms-homepage#readme",
   "dependencies": {
     "marked": "18.2.1"
+  },
+  "devDependencies": {
+    "@types/node": "24.19.2",
+    "typescript": "6.0.3"
   }
 }
