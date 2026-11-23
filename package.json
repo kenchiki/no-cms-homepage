@@ -7,7 +7,7 @@
     "build": "node src/commands/build.ts",
     "build:full": "node src/commands/build.ts --full",
     "typecheck": "tsc --noEmit",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "NODE_OPTIONS=--experimental-vm-modules jest"
   },
   "repository": {
     "type": "git",
@@ -24,8 +24,16 @@
   "dependencies": {
     "marked": "18.2.1"
   },
+  "jest": {
+    "extensionsToTreatAsEsm": [
+      ".ts"
+    ],
+    "transform": {}
+  },
   "devDependencies": {
+    "@jest/globals": "30.5.2",
     "@types/node": "24.19.2",
+    "jest": "30.5.2",
     "typescript": "6.0.3"
   }
 }

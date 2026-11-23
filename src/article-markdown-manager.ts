@@ -1,27 +1,27 @@
 import { ArticleMarkdown } from './article-markdown.ts';
-import type { BuildHashesStore } from './build-hashes-store.ts';
-import type { FilteredPaths } from './filtered-paths.ts';
+import type { FilteredBuildHashes } from './filtered-build-hashes.ts';
+import type { RemovedPathsProvider } from './infrastructure/file-remover.ts';
 import { listPaths } from './infrastructure/files.ts';
 
-export class ArticleMarkdownManager {
+export class ArticleMarkdownManager implements RemovedPathsProvider {
   static readonly sourceDirectory = 'articles';
   static readonly sourceExtension = '.md';
   readonly #sourcePaths = listPaths(ArticleMarkdownManager.sourceDirectory, ArticleMarkdownManager.sourceExtension);
-  readonly #previousSourcePaths: FilteredPaths;
+  readonly #previousHashes: FilteredBuildHashes;
 
-  constructor(previousSourcePaths: FilteredPaths) {
-    this.#previousSourcePaths = previousSourcePaths;
+  constructor(previousHashes: FilteredBuildHashes) {
+    this.#previousHashes = previousHashes;
   }
 
-  createArticleMarkdowns(hashStore: BuildHashesStore): ArticleMarkdown[] {
+  createMarkdowns(): ArticleMarkdown[] {
     return this.#sourcePaths.map((sourcePath) => new ArticleMarkdown({
       sourcePath,
-      previousHash: hashStore.get(sourcePath),
+      previousHash: this.#previousHashes.get(sourcePath),
     }));
   }
 
   removedPaths(): string[] {
-    return this.#previousSourcePaths.difference(this.#sourcePaths)
+    return this.#previousHashes.differencePaths(this.#sourcePaths)
       .map(ArticleMarkdown.outputPath);
   }
 }

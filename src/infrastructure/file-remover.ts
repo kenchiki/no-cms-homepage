@@ -1,13 +1,18 @@
 import { deleteFiles } from './files.ts';
 
-export class FileRemover {
-  readonly #paths: readonly string[];
+export interface RemovedPathsProvider {
+  removedPaths(): readonly string[];
+}
 
-  constructor(paths: readonly string[]) {
-    this.#paths = paths;
+export class FileRemover {
+  readonly #providers: readonly RemovedPathsProvider[];
+
+  constructor(providers: readonly RemovedPathsProvider[]) {
+    this.#providers = providers;
   }
 
   remove(): number {
-    return deleteFiles(this.#paths);
+    const paths = this.#providers.flatMap((provider) => provider.removedPaths());
+    return deleteFiles(paths);
   }
 }

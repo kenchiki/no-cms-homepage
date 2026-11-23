@@ -1,29 +1,29 @@
-import type { BuildHashesStore } from '../build-hashes-store.ts';
-import type { FilteredPaths } from '../filtered-paths.ts';
+import type { FilteredBuildHashes } from '../filtered-build-hashes.ts';
+import type { RemovedPathsProvider } from '../infrastructure/file-remover.ts';
 import { listPaths } from '../infrastructure/files.ts';
 import type { LayoutTemplate } from '../templates/layout-template.ts';
 import { FixedPage } from './fixed-page.ts';
 
-export class FixedPageManager {
+export class FixedPageManager implements RemovedPathsProvider {
   static readonly sourceDirectory = 'pages';
   static readonly sourceExtension = '.html';
   readonly #sourcePaths = listPaths(FixedPageManager.sourceDirectory, FixedPageManager.sourceExtension);
-  readonly #previousSourcePaths: FilteredPaths;
+  readonly #previousHashes: FilteredBuildHashes;
 
-  constructor(previousSourcePaths: FilteredPaths) {
-    this.#previousSourcePaths = previousSourcePaths;
+  constructor(previousHashes: FilteredBuildHashes) {
+    this.#previousHashes = previousHashes;
   }
 
-  createPages({ layoutTemplate, hashStore }: { layoutTemplate: LayoutTemplate; hashStore: BuildHashesStore }): FixedPage[] {
+  createPages({ layoutTemplate }: { layoutTemplate: LayoutTemplate }): FixedPage[] {
     return this.#sourcePaths.map((sourcePath) => new FixedPage({
       layoutTemplate,
       sourcePath,
-      previousHash: hashStore.get(sourcePath),
+      previousHash: this.#previousHashes.get(sourcePath),
     }));
   }
 
   removedPaths(): string[] {
-    return this.#previousSourcePaths.difference(this.#sourcePaths)
+    return this.#previousHashes.differencePaths(this.#sourcePaths)
       .map(FixedPage.outputPath);
   }
 }

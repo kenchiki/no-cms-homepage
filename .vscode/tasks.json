@@ -38,6 +38,17 @@
       "problemMatcher": "$tsc"
     },
     {
+      "label": "テスト",
+      "type": "process",
+      "command": "docker",
+      "args": ["compose", "run", "--build", "--rm", "-T", "app", "npm", "test"],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "group": "test",
+      "problemMatcher": []
+    },
+    {
       "label": "プレビューを起動",
       "type": "process",
       "command": "docker",
