@@ -15,15 +15,17 @@ export class FixedPageManager implements RemovedPathsProvider {
   }
 
   createPages({ layoutTemplate }: { layoutTemplate: LayoutTemplate }): FixedPage[] {
-    return this.#sourcePaths.map((sourcePath) => new FixedPage({
-      layoutTemplate,
-      sourcePath,
-      previousHash: this.#previousHashes.get(sourcePath),
-    }));
+    return this.#sourcePaths.map(
+      (sourcePath) =>
+        new FixedPage({
+          layoutTemplate,
+          sourcePath,
+          previousHash: this.#previousHashes.get(sourcePath),
+        }),
+    );
   }
 
   removedPaths(): string[] {
-    return this.#previousHashes.differencePaths(this.#sourcePaths)
-      .map(FixedPage.outputPath);
+    return this.#previousHashes.differencePaths(this.#sourcePaths).map(FixedPage.outputPath);
   }
 }

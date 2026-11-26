@@ -15,14 +15,21 @@ export class LayoutTemplate extends Template<LayoutValues> {
 
   render({ title, body }: LayoutValues): string {
     const siteTitle = LayoutTemplate.#siteTitle;
-    const siteHeaderTitle = title === undefined
-      ? `<h1>${siteTitle}</h1>`
-      : `<p><a href="/index.html">${siteTitle}</a></p>`;
 
-    return this.replacePlaceholders({
-      title: title ? `${title} | ${siteTitle}` : siteTitle,
-      siteHeaderTitle,
-      content: body.trim(),
-    }, this.text);
+    return this.replacePlaceholders(
+      {
+        title: title ? `${title} | ${siteTitle}` : siteTitle,
+        siteHeaderTitle: this.#renderSiteHeaderTitle(title),
+        content: body.trim(),
+      },
+      this.text,
+    );
+  }
+
+  #renderSiteHeaderTitle(title: string | undefined): string {
+    if (title === undefined) {
+      return `<h1>${LayoutTemplate.#siteTitle}</h1>`;
+    }
+    return `<p><a href="/index.html">${LayoutTemplate.#siteTitle}</a></p>`;
   }
 }

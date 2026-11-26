@@ -13,7 +13,11 @@ export class FixedPage extends Page implements HashTracker {
     return `docs/${sourcePath}`;
   }
 
-  constructor({ layoutTemplate, sourcePath, previousHash }: {
+  constructor({
+    layoutTemplate,
+    sourcePath,
+    previousHash,
+  }: {
     layoutTemplate: LayoutTemplate;
     sourcePath: string;
     previousHash?: string;

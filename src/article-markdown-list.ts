@@ -8,7 +8,10 @@ export class ArticleMarkdownList implements ChangeTracker {
   readonly articles: readonly ArticleMarkdown[];
   #previousPaths: readonly string[];
 
-  constructor({ articleMarkdowns, previousSourcePaths }: {
+  constructor({
+    articleMarkdowns,
+    previousSourcePaths,
+  }: {
     articleMarkdowns: readonly ArticleMarkdown[];
     previousSourcePaths: readonly string[];
   }) {
@@ -26,8 +29,10 @@ export class ArticleMarkdownList implements ChangeTracker {
   }
 
   hasChanges(): boolean {
-    return this.articles.length !== this.#previousPaths.length
-      || this.articles.some((article, index) => article.sourcePath !== this.#previousPaths[index] || article.hasChanges());
+    return (
+      this.articles.length !== this.#previousPaths.length ||
+      this.articles.some((article, index) => article.sourcePath !== this.#previousPaths[index] || article.hasChanges())
+    );
   }
 
   static #compareSourcePaths(firstPath: string, secondPath: string): number {

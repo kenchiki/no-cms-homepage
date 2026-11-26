@@ -8,7 +8,10 @@ export class ArchivePage extends Page {
   #template: ArchiveTemplate;
   #articleMarkdownList: ArticleMarkdownList;
 
-  constructor({ template, articleMarkdownList }: {
+  constructor({
+    template,
+    articleMarkdownList,
+  }: {
     template: ArchiveTemplate;
     articleMarkdownList: ArticleMarkdownList;
   }) {
@@ -25,8 +28,8 @@ export class ArchivePage extends Page {
     const byYear = Map.groupBy(this.#articleMarkdownList.articles, (article) => article.publishedDate.slice(0, 4));
     const years = [...byYear.keys()];
     const links = years.map((year) => `<li><a href="/archive.html#year-${year}">${year}年</a></li>`).join('\n');
-    const groups = [...byYear].map(([year, group]) =>
-      `<section>\n<h2 id="year-${year}">${year}年</h2>\n${renderArticles(group)}\n</section>`,
+    const groups = [...byYear].map(
+      ([year, group]) => `<section>\n<h2 id="year-${year}">${year}年</h2>\n${renderArticles(group)}\n</section>`,
     );
     return {
       yearNavigation: links ? `<nav aria-label="年別">\n<ul>\n${links}\n</ul>\n</nav>` : '',

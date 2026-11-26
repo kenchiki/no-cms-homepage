@@ -31,8 +31,14 @@ export class PublishPlanFactory {
     const hashStore = this.#hashStore;
     const layoutTemplate = new LayoutTemplate({ previousHash: hashStore.get(LayoutTemplate.sourcePath) });
     const topTemplate = new TopTemplate({ layoutTemplate, previousHash: hashStore.get(TopTemplate.sourcePath) });
-    const archiveTemplate = new ArchiveTemplate({ layoutTemplate, previousHash: hashStore.get(ArchiveTemplate.sourcePath) });
-    const articleTemplate = new ArticleTemplate({ layoutTemplate, previousHash: hashStore.get(ArticleTemplate.sourcePath) });
+    const archiveTemplate = new ArchiveTemplate({
+      layoutTemplate,
+      previousHash: hashStore.get(ArchiveTemplate.sourcePath),
+    });
+    const articleTemplate = new ArticleTemplate({
+      layoutTemplate,
+      previousHash: hashStore.get(ArticleTemplate.sourcePath),
+    });
     const articleHashes = new FilteredBuildHashes({
       hashStore,
       directory: ArticleMarkdownManager.sourceDirectory,
@@ -53,7 +59,12 @@ export class PublishPlanFactory {
 
     return {
       hashTrackers: [
-        topTemplate, archiveTemplate, articleTemplate, layoutTemplate, ...articleMarkdownList.articles, ...fixedPages,
+        topTemplate,
+        archiveTemplate,
+        articleTemplate,
+        layoutTemplate,
+        ...articleMarkdownList.articles,
+        ...fixedPages,
       ],
       fileRemover: new FileRemover([articleMarkdownManager, fixedPageManager]),
       pageBuilder: new PageBuilder({
@@ -61,10 +72,13 @@ export class PublishPlanFactory {
         pages: [
           new TopPage({ template: topTemplate, articleMarkdownList: articleMarkdownList.latest() }),
           new ArchivePage({ template: archiveTemplate, articleMarkdownList }),
-          ...articleMarkdownList.articles.map((articleMarkdown) => new ArticlePage({
-            template: articleTemplate,
-            articleMarkdown,
-          })),
+          ...articleMarkdownList.articles.map(
+            (articleMarkdown) =>
+              new ArticlePage({
+                template: articleTemplate,
+                articleMarkdown,
+              }),
+          ),
           ...fixedPages,
         ],
       }),
