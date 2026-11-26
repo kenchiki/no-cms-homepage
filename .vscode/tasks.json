@@ -2,7 +2,7 @@
   "version": "2.0.0",
   "tasks": [
     {
-      "label": "差分ビルド",
+      "label": "Diff Build",
       "type": "process",
       "command": "docker",
       "args": ["compose", "run", "--build", "--rm", "-T", "app", "npm", "run", "build"],
@@ -16,7 +16,7 @@
       "problemMatcher": []
     },
     {
-      "label": "フルビルド",
+      "label": "Full Build",
       "type": "process",
       "command": "docker",
       "args": ["compose", "run", "--build", "--rm", "-T", "app", "npm", "run", "build:full"],
@@ -27,7 +27,17 @@
       "problemMatcher": []
     },
     {
-      "label": "型チェック",
+      "label": "Format TypeScript",
+      "type": "process",
+      "command": "docker",
+      "args": ["compose", "run", "--build", "--rm", "-T", "app", "npm", "run", "format"],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Check Types",
       "type": "process",
       "command": "docker",
       "args": ["compose", "run", "--build", "--rm", "-T", "app", "npm", "run", "typecheck"],
@@ -38,7 +48,7 @@
       "problemMatcher": "$tsc"
     },
     {
-      "label": "テスト",
+      "label": "Test",
       "type": "process",
       "command": "docker",
       "args": ["compose", "run", "--build", "--rm", "-T", "app", "npm", "test"],
@@ -49,7 +59,7 @@
       "problemMatcher": []
     },
     {
-      "label": "プレビューを起動",
+      "label": "Preview Start",
       "type": "process",
       "command": "docker",
       "args": ["compose", "up", "--wait", "preview"],
@@ -59,7 +69,7 @@
       "problemMatcher": []
     },
     {
-      "label": "プレビューを停止",
+      "label": "Preview Stop",
       "type": "process",
       "command": "docker",
       "args": ["compose", "stop", "preview"],

@@ -7,7 +7,11 @@ export class FilteredBuildHashes {
   readonly #extension: string;
   readonly #paths: readonly string[];
 
-  constructor({ hashStore, directory, extension }: {
+  constructor({
+    hashStore,
+    directory,
+    extension,
+  }: {
     hashStore: BuildHashesStore;
     directory: string;
     extension: string;

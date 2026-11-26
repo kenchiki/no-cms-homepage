@@ -14,14 +14,16 @@ export class ArticleMarkdownManager implements RemovedPathsProvider {
   }
 
   createMarkdowns(): ArticleMarkdown[] {
-    return this.#sourcePaths.map((sourcePath) => new ArticleMarkdown({
-      sourcePath,
-      previousHash: this.#previousHashes.get(sourcePath),
-    }));
+    return this.#sourcePaths.map(
+      (sourcePath) =>
+        new ArticleMarkdown({
+          sourcePath,
+          previousHash: this.#previousHashes.get(sourcePath),
+        }),
+    );
   }
 
   removedPaths(): string[] {
-    return this.#previousHashes.differencePaths(this.#sourcePaths)
-      .map(ArticleMarkdown.outputPath);
+    return this.#previousHashes.differencePaths(this.#sourcePaths).map(ArticleMarkdown.outputPath);
   }
 }

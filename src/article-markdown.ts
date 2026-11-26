@@ -65,16 +65,18 @@ export class ArticleMarkdown implements ChangeTracker, HashTracker {
   }
 
   #headingText(tokens: Token[]): string {
-    return tokens.map((token) => {
-      if (token.type === 'html') return '';
-      if (token.type === 'br') return ' ';
-      if (token.type === 'codespan' || (token.type === 'link' && token.autolink)) {
-        return token.text;
-      }
-      if ('tokens' in token && Array.isArray(token.tokens)) {
-        return this.#headingText(token.tokens);
-      }
-      return 'text' in token && typeof token.text === 'string' ? token.text : '';
-    }).join('');
+    return tokens
+      .map((token) => {
+        if (token.type === 'html') return '';
+        if (token.type === 'br') return ' ';
+        if (token.type === 'codespan' || (token.type === 'link' && token.autolink)) {
+          return token.text;
+        }
+        if ('tokens' in token && Array.isArray(token.tokens)) {
+          return this.#headingText(token.tokens);
+        }
+        return 'text' in token && typeof token.text === 'string' ? token.text : '';
+      })
+      .join('');
   }
 }

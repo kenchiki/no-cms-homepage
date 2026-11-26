@@ -8,10 +8,7 @@ export class TopPage extends Page {
   #template: TopTemplate;
   #articleMarkdownList: ArticleMarkdownList;
 
-  constructor({ template, articleMarkdownList }: {
-    template: TopTemplate;
-    articleMarkdownList: ArticleMarkdownList;
-  }) {
+  constructor({ template, articleMarkdownList }: { template: TopTemplate; articleMarkdownList: ArticleMarkdownList }) {
     super({ changeCheckList: [template, articleMarkdownList] });
     this.#template = template;
     this.#articleMarkdownList = articleMarkdownList;

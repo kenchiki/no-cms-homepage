@@ -1,6 +1,14 @@
 import { rmSync, writeFileSync } from 'node:fs';
 
-export function createArticleMarkdown({ fileName, title, body }: { fileName: string; title: string; body: string }): void {
+export function createArticleMarkdown({
+  fileName,
+  title,
+  body,
+}: {
+  fileName: string;
+  title: string;
+  body: string;
+}): void {
   writeFileSync(`articles/${fileName}.md`, `# ${title}\n\n${body}\n`);
 }
 
