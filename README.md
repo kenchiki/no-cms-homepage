@@ -6,9 +6,9 @@
 
 ## ビルド
 
-
-
 ### 差分ビルド
+
+VS Codeのタスク「Diff Build」を実行。
 
 コンテンツの新規・変更・削除やテンプレートの変更が発生した際、影響のあるページのみ再生成。
 削除した記事や固定ページのHTMLも削除。
@@ -16,10 +16,14 @@
 
 ### フルビルド
 
+VS Codeのタスク「Full Build」を実行。
+
 強制的に全ページを再生成
 `src/`の生成処理を変更した時などに使用。
 
 ## プレビューを起動
+
+VS Codeのタスク「Preview Start」を実行。
 
 http://localhost でサイトを確認できる。
 
@@ -29,7 +33,21 @@ http://localhost でサイトを確認できる。
 PREVIEW_PORT=8080 docker compose up --wait preview
 ```
 
-終了するときは、VS Codeのタスク「プレビューを停止」
+終了するときは、VS Codeのタスク「Preview Stop」を実行。
+
+## コードの整形とチェック
+
+### フォーマット
+
+VS Codeのタスク「Format TypeScript」を実行。
+
+Prettierで`src/`と`test/`配下のTypeScriptを整形。
+
+### 型チェック
+
+VS Codeのタスク「Check Types」を実行。
+
+`tsc --noEmit`でTypeScriptの型をチェック。
 
 ## コンテンツの追加
 
