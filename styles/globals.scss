@@ -1,0 +1,174 @@
+@use 'mixins';
+
+html, body,
+blockquote, div, h1, h2, h3, h4, h5, h6, p, pre,
+abbr, address, cite, em, img,
+small, span, strong, sub, sup,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, footer, header, nav, section,
+canvas, hr, iframe, object, time, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+}
+
+html {
+  font-size: 62.5%; //10px
+  &, textarea {
+    font-family: 'Helvetica', 'Arial', 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic ProN', 'Osaka', 'メイリオ', 'Meiryo', 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif;
+  }
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul, ol {
+  list-style: none;
+}
+
+html {
+  background-color: #eee;
+}
+
+@include mixins.pc {
+  body {
+    font-size: 1.4rem;
+  }
+}
+
+
+@include mixins.sp {
+  body {
+    font-size: 1.8rem;
+  }
+}
+
+.wysiwyg {
+  margin-top: 50px;
+}
+
+:where(.wysiwyg, main) {
+  font-size: 1.6rem;
+  line-height: 3.5rem;
+  overflow-wrap: anywhere;
+
+  @include mixins.sp {
+    font-size: 1.8rem;
+  }
+
+  ul {
+    padding-left: 20px;
+    list-style: disc;
+    margin-top: 2rem;
+    ul {
+      margin-top: 0rem;
+    }
+  }
+
+  .gallery {
+    ul {
+      padding-left: 0px;
+      list-style: none;
+      display: flex;
+      flex-flow: row wrap;
+
+      & > * {
+        flex-shrink: 0;
+        width: calc((100% - 40px) / 2);
+        margin-left: 40px;
+        margin-top: 40px;
+        padding: 0;
+      }
+      & > *:nth-child(-n+2) {
+        margin-top: 0;
+      }
+      & > *:nth-child(2n+1) {
+        margin-left: 0;
+      }
+
+      img {
+        width: 100%;
+        vertical-align: top;
+      }
+    }
+  }
+
+  ol {
+    padding-left: 50px;
+    list-style: decimal;
+    margin-top: 2rem;
+  }
+  p {
+    margin-top: 2rem;
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+  }
+
+  a {
+    text-decoration: underline;
+  }
+
+  table {
+    border-collapse: collapse;
+    border: 1px solid #cccccc;
+    margin-top: 2rem;
+    th, td {
+      border-collapse: collapse;
+      border: 1px solid #B1B1B1;
+      padding-top: 5px;
+      padding-right: 10px;
+      padding-bottom: 5px;
+      padding-left: 10px;
+    }
+
+    th {
+      background-color: #dddddd;
+    }
+
+    caption {
+      text-align: left;
+      font-weight: bold;
+    }
+  }
+  div {
+    margin-top: 2rem;
+  }
+
+  & > *:first-child {
+    margin-top: 0;
+  }
+
+  // プログラムコード
+  pre {
+    margin-top: 2rem;
+    overflow-x: auto;
+  }
+
+  h2 {
+    font-size: 2.4rem;
+    margin-top: 2rem;
+  }
+
+  blockquote {
+    background: #e0e0e0;
+    font-style: italic;
+    padding: 10px 12px;
+    margin-top: 2rem;
+    & > :first-child {
+      margin-top: 0;
+    }
+  }
+}
+
+.preview {
+  overflow-y: scroll;
+  height: 900px;
+}
+

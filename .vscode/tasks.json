@@ -27,6 +27,17 @@
       "problemMatcher": []
     },
     {
+      "label": "Build CSS",
+      "type": "process",
+      "command": "docker",
+      "args": ["compose", "run", "--build", "--rm", "-T", "app", "npm", "run", "build:css"],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "group": "build",
+      "problemMatcher": []
+    },
+    {
       "label": "Format TypeScript",
       "type": "process",
       "command": "docker",

@@ -1,0 +1,15 @@
+@use 'sass:meta';
+@use 'globals';
+@use 'Layout.module' as layout;
+
+.home {
+  @include meta.load-css('Home.module');
+}
+
+.posts-create {
+  @include meta.load-css('PostsCreate.module');
+}
+
+.server-current-time-app {
+  @include meta.load-css('server-current-time-app.module');
+}

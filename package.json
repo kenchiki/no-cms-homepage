@@ -6,6 +6,7 @@
   "scripts": {
     "build": "node src/commands/build.ts",
     "build:full": "node src/commands/build.ts --full",
+    "build:css": "node src/commands/build-css.ts",
     "format": "prettier --write \"{src,test}/**/*.ts\"",
     "typecheck": "tsc --noEmit",
     "test": "NODE_OPTIONS=--experimental-vm-modules jest"
@@ -36,6 +37,7 @@
     "@types/node": "24.19.2",
     "jest": "30.5.2",
     "prettier": "3.10.1",
+    "sass": "1.108.2",
     "typescript": "6.0.3"
   }
 }

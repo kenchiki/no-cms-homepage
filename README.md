@@ -72,8 +72,12 @@ VS Codeのタスク「Check Types」を実行。
 <p>ここに本文を書く。</p>
 ```
 
-## CSS・画像などの置き場所
+## CSS生成
 
-CSSや画像、JavaScriptは`docs/assets/`に置く。
+SCSSを変更したら、VS Codeのタスク「Build CSS」を実行。
+
+## CSS・JavaScript・画像などの置き場所
+
+`docs/assets/`に置く。
 リポジトリ直下の`assets/`は`docs/assets/`へのシンボリックリンク。
 編集時に`articles/`や`templates/`のファイルから画像を相対パスで確認する場合は、`../assets/images/gallery.jpg`で同じ画像を参照できる。

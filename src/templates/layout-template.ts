@@ -7,7 +7,7 @@ type LayoutValues = {
 
 export class LayoutTemplate extends Template<LayoutValues> {
   static readonly sourcePath = 'templates/layout.html';
-  static readonly #siteTitle = 'no-cms-homepage';
+  static readonly #siteTitle = 'FUU BLOG.';
 
   constructor({ previousHash }: { previousHash?: string }) {
     super({ sourcePath: LayoutTemplate.sourcePath, previousHash });
@@ -27,9 +27,10 @@ export class LayoutTemplate extends Template<LayoutValues> {
   }
 
   #renderSiteHeaderTitle(title: string | undefined): string {
+    const logo = `<img src="/assets/images/site/logo.png" width="360" height="50" alt="${LayoutTemplate.#siteTitle}">`;
     if (title === undefined) {
-      return `<h1>${LayoutTemplate.#siteTitle}</h1>`;
+      return `<h1 class="header__logo">${logo}</h1>`;
     }
-    return `<p><a href="/index.html">${LayoutTemplate.#siteTitle}</a></p>`;
+    return `<p class="header__logo"><a href="/index.html">${logo}</a></p>`;
   }
 }

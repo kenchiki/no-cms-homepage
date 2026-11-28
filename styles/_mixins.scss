@@ -1,0 +1,91 @@
+@use 'sass:math';
+
+$breakpoint-width: 768px;
+
+@mixin pc {
+  @media print, screen and (width > #{$breakpoint-width}) {
+    @content;
+  }
+}
+
+@mixin sp {
+  @media screen and (max-width: #{$breakpoint-width}) {
+    @content;
+  }
+}
+
+// usage:@include gutter($x: 5, $y: 0, $n: 4);
+@mixin gutter(
+  $x: 0,
+  $y: 0,
+  $n: 1
+) {
+  $summed_x: #{$x * ($n - 1)};
+  & > * {
+    flex-shrink: 0; //縮小機能が働かないようにする
+    width: calc((100% - #{$summed_x}px) / #{$n});
+    margin-left: #{$x}px;
+    margin-top: #{$y}px;
+    &:nth-child(-n+#{$n}) {
+      margin-top: 0;
+    }
+    &:nth-child(#{$n}n+1) {
+      margin-left: 0;
+    }
+  }
+}
+
+//usage: @include grid($x: 10, $y: 10, $n: 2, $flow: nowrap);
+@mixin grid(
+  $x: 0,
+  $y: 0,
+  $n: 1,
+  $flow: wrap
+) {
+  @include gutter($x: $x, $y: $y, $n: $n);
+  @if $flow == wrap {flex-flow: row wrap;}
+  @if $flow == nowrap {flex-flow: row nowrap;}
+  display: flex;
+}
+
+//usage:@include menu($x: 10, $w: 100);
+@mixin menu(
+  $x: 10,
+  $w: 100
+) {
+  display: flex;
+  flex-flow: row nowrap;
+
+  & > * {
+    width: #{$w}px;
+    margin-left: #{$x}px;
+    &:first-child {
+      margin-left: 0;
+    }
+  }
+}
+
+//usage: @include no-wrap;
+//url、メールが折り返さなくてレイアウトを崩れるのを防ぐ
+@mixin no-wrap {
+  word-break: break-all;
+}
+
+//usage: @include ratio($r: 0.5);
+@mixin ratio(
+  $r: 0.5
+) {
+  position: relative;
+  &:after {
+    content: "";
+    display: block;
+    padding-top: math.percentage($r);
+  }
+  & > * {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+  }
+}
