@@ -1,7 +1,9 @@
 <article>
-  <header>
-    <h1>{{articleTitle}}</h1>
-    <p>公開日 <time datetime="{{publishedDate}}">{{publishedDate}}</time></p>
+  <header class="title">
+    <p class="title__date">公開日 <time datetime="{{publishedDate}}">{{publishedDate}}</time></p>
+    <h1 class="title__h1"><span>{{articleTitle}}</span></h1>
   </header>
-  {{articleBody}}
+  <div class="wysiwyg">
+    {{articleBody}}
+  </div>
 </article>

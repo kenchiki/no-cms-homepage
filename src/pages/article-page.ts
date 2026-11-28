@@ -15,11 +15,13 @@ export class ArticlePage extends Page {
   }
 
   protected render(): string {
-    const { title, publishedDate } = this.#articleMarkdown;
+    const { title, publishedDate, urlPath, thumbnailPath } = this.#articleMarkdown;
     return this.#template.render({
       articleTitle: title,
       publishedDate,
       articleBody: this.#articleMarkdown.render(),
+      urlPath,
+      thumbnailPath,
     });
   }
 }

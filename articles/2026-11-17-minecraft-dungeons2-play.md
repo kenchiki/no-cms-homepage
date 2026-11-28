@@ -1,3 +1,5 @@
+<!-- thumbnail: /assets/images/content/sample.png -->
+
 # Minecraft Dungeons 2 プレイ記録
 
 静的サイトの生成を確認するためのサンプル記事です。

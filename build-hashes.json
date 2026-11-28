@@ -1,8 +1,9 @@
 {
-  "templates/index.html": "7c097976327e80aa3d6f20884f2de3fb6f1312aefe10a4b374340e0250aa8d62",
+  "templates/index.html": "41769c0edd35a6a9adc9ffef141c97b122c1c3fdbef130b98f5bd2e95bc89faa",
   "templates/archive.html": "dd3dae12c4403d741478478f8944fb3058dd2d55d7f9b8f3ba2ec1c4076c710e",
-  "templates/article.html": "c4535393fcb0ac6ad4245989b127683071a4848b24041ccc2ed9e858977bece7",
-  "templates/layout.html": "5b5aed70cfab7d347f4334b1f8a5919ecb014bc06e54926288dbd002a063bef9",
-  "articles/2026-11-17-minecraft-dungeons2-play.md": "1980b1d862efc96685c22c7093f5c188844a992cca8727c54a85e6a6bedd6901",
+  "templates/article.html": "cc53c8cfe0f781005c50d34693cb62b5399d76911ce9982a78519e374ba1a7b8",
+  "templates/layout.html": "3cdf9e8d4e6e0c3a5dbf2e521083dc1cb8e489050243e13b1195dfaf95b30037",
+  "articles/2026-11-18-minecraft-dungeons2-play.md": "92256fc7f328c698a65aaf8a25f59407f8c226bd0d86a9638312b14851127035",
+  "articles/2026-11-17-minecraft-dungeons2-play.md": "b6dac2dc0f883287d2fc1f80de68e5171f55b0e20ced89b4ef40537b5ccbbbb6",
   "pages/link.html": "ce66f6bc3a0b870672c2cd5024768e59f6a91e3ed21f0fb9b60e899adef9b5d7"
 }

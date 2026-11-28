@@ -28,15 +28,16 @@ describe('Publisher', () => {
         describe('マークダウンがある場合', () => {
           const fileName = '2026-11-18-second';
           const title = '新しい記事';
+          const body = '新しい本文です。';
 
           beforeEach(() => {
             publish();
-            createArticleMarkdown({ fileName, title, body: '新しい本文です。' });
+            createArticleMarkdown({ fileName, title, body });
           });
 
           it('作成する', () => {
             publish();
-            expect(readFileSync(`docs/articles/${fileName}.html`, 'utf8')).toContain(`<h1>${title}</h1>`);
+            expect(readFileSync(`docs/articles/${fileName}.html`, 'utf8')).toContain(body);
           });
         });
 

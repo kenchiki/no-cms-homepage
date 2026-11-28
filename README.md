@@ -56,7 +56,8 @@ VS Codeのタスク「Check Types」を実行。
 `articles/YYYY-MM-DD-記事ID.md`を作り、タイトルはMarkdownのH1で書く。
 公開日はファイル名から取得。
 生成先は`docs/articles/`。
-トップページには最新10件、アーカイブには全記事を年別に一覧表示。
+トップページには最新10件、アーカイブには全記事を年別に表示。
+サムネイルは、記事の先頭に `<!-- thumbnail: /assets/images/content/sample.png -->` のように指定する。OGP画像にも使う。
 
 ### 固定ページ
 
